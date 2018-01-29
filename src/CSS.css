@@ -1,0 +1,47 @@
+.topButtons {
+    -fx-text-fill: white;
+    -fx-font-size:16;
+    -fx-font-family: "Verdana";
+
+    -fx-background-color: black;
+}
+
+
+.Logo {
+    -fx-text-fill: purple;
+    -fx-font-size: 12;
+    -fx-font-family: "Arial Black";
+    -fx-padding: 10;
+    -fx-background-color: lightslategrey;
+}
+
+.logoPane {
+    -fx-background-color: black;
+}
+
+.panes {
+    -fx-text-fill: navajowhite;
+    -fx-font-size: 10;
+    -fx-font-family: "Arial Black";
+    -fx-background-color: grey;
+}
+
+.leftPane {
+    -fx-text-fill: navajowhite;
+    -fx-font-size: 10;
+    -fx-font-family: "Arial Black";
+    -fx-background-color: grey;
+
+}
+
+.moviePane {
+
+-fx-background-color: grey;
+
+}
+
+.leftPicture {
+
+-fx-background-color : purple;
+
+}

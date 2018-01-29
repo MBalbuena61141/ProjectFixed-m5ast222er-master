@@ -1,0 +1,44 @@
+package View;
+
+import Model.DatabaseConnection;
+import javafx.application.Application;
+import javafx.scene.Scene;
+import javafx.scene.layout.VBox;
+import javafx.scene.text.Text;
+import javafx.stage.Modality;
+import javafx.stage.Stage;
+
+import java.awt.event.ActionEvent;
+
+public class Main extends Application {
+
+    public static DatabaseConnection database;
+    public static Stage stage;
+
+    @Override
+    public void start(Stage startStage) throws Exception {
+
+        stage = startStage;
+        database = new DatabaseConnection("DatabaseProject.db");
+
+        HomePage.makeHomePage();
+        //LogIn.makeLogIn(startStage);
+
+        }
+
+
+//comment
+
+
+
+}
+
+
+
+
+
+
+
+
+
+
