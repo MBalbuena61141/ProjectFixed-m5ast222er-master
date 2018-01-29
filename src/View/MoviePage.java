@@ -109,15 +109,14 @@ public class MoviePage {
 
 
 
-        WebView webview = new WebView();
-        webview.getEngine().load(
+        WebView trailer = new WebView();
+        trailer.getEngine().load(
                "https://www.youtube.com/embed/0pdqf4P9MB8"
         );
-        webview.setPrefSize(640, 390);
+        trailer.setPrefSize(640, 390);
 
 
-      //////// root.setBottom(webview);
-        khviygliu
+    root.setBottom(trailer);
 
 
         root.setCenter(middlePane);
