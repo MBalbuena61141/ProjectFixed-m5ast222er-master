@@ -2,6 +2,7 @@ package View;
 import Controller.HomePageController;
 import Model.Movie;
 import Model.MovieService;
+import Model.YoutubeUrl;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
@@ -108,15 +109,14 @@ public class MoviePage {
 
 
 
-
         WebView trailer = new WebView();
         trailer.getEngine().load(
-               "https://www.youtube.com/embed/0pdqf4P9MB8"
+                "https://www.youtube.com/embed/0pdqf4P9MB8"
         );
         trailer.setPrefSize(640, 390);
 
 
-    root.setBottom(trailer);
+        root.setBottom(trailer);
 
 
         root.setCenter(middlePane);
@@ -131,7 +131,7 @@ public class MoviePage {
 
 
 
-        // STARTING MIDDLE SECTION <----------------->
+// STARTING MIDDLE SECTION <----------------->
 
        /* private static  VBox makeMiddlePane (int movieID){
 
