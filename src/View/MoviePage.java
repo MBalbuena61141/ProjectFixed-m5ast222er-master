@@ -3,6 +3,7 @@ import Controller.HomePageController;
 import Model.Movie;
 import Model.MovieService;
 import Model.YoutubeUrl;
+import Model.YoutubeUrlService;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
@@ -23,7 +24,7 @@ import static View.Main.database;
 
 public class MoviePage {
 
-    public static void makeMoviePage(int movieID) {
+    public static void makeMoviePage(int movieID, int urlID) {
 
         System.out.println("the page that has loaded is for the movie" + movieID);
 
@@ -108,11 +109,15 @@ public class MoviePage {
         middlePane.getChildren().add(trailerVideo);
 
 
+        YoutubeUrl url = YoutubeUrlService.selectByID((urlID, Main.database);
+        System.out.println(url.toString());
+
+
+
 
         WebView trailer = new WebView();
-        trailer.getEngine().load(
-                "https://www.youtube.com/embed/0pdqf4P9MB8"
-        );
+        thisTrailer = movie;
+        trailer.getEngine().load(YoutubeUrlService.selectByID(movie););
         trailer.setPrefSize(640, 390);
 
 
