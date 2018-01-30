@@ -91,7 +91,7 @@ public class HomePage {
 
     }
 
-    private static VBox makeTrailerPane(int movieID) {
+    public static VBox makeTrailerPane(int movieID) {
 
         VBox pane = new VBox(20);
         pane.setPrefSize(341, 153);

@@ -2,28 +2,25 @@ package Model;
 
 public class YoutubeUrl {
 
-    private char url;
+    private String movieUrl;
     private int movieID;
     private int urlID;
 
 
-    public YoutubeUrl(char url, int movieID, int urlID) {
+    public YoutubeUrl(String movieUrl, int movieID, int urlID) {
 
-        this.url = url;
+        this.movieUrl = movieUrl;
         this.movieID = movieID;
         this.urlID = urlID;
+
     }
 
-    public char getUrl() { return url;
+    public String getMovieUrl() {
+        return movieUrl;
     }
 
-    public void setUrl(char url) { this.url = url;
-    }
-
-    public int getMovieID() { return movieID;
-    }
-
-    public void setMovieID(int movieID) { this.movieID = movieID;
+    public void setMovieUrl(String movieUrl) {
+        this.movieUrl = movieUrl;
     }
 
     public int getUrlID() {
@@ -34,11 +31,23 @@ public class YoutubeUrl {
         this.urlID = urlID;
     }
 
+    public int getMovieID() {
+        return movieID;
+    }
+
+    public void setMovieID(int movieID) {
+        this.movieID = movieID;
+
+
+    }
+
     @Override
     public String toString() {
         return "YoutubeUrl{" +
-                "url=" + url +
+                "movieUrl='" + movieUrl + '\'' +
                 '}';
     }
 }
+
+
 

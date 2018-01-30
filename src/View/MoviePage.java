@@ -4,11 +4,9 @@ import Model.Movie;
 import Model.MovieService;
 import Model.YoutubeUrl;
 import Model.YoutubeUrlService;
-import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
-import javafx.scene.control.Label;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
@@ -16,22 +14,24 @@ import javafx.scene.media.Media;
 import javafx.scene.media.MediaPlayer;
 import javafx.scene.media.MediaView;
 import javafx.scene.web.WebView;
-import javafx.stage.Stage;
 
 import java.net.URL;
-
-import static View.Main.database;
+import java.util.ArrayList;
 
 public class MoviePage {
 
-    public static void makeMoviePage(int movieID, int urlID) {
+
+
+
+
+    public static void makeMoviePage(int movieID) {
 
         System.out.println("the page that has loaded is for the movie" + movieID);
-
-
-
         BorderPane root = new BorderPane();
         Scene movieScene = new Scene(root, 1024, 768);
+
+
+
         Main.stage.setScene(movieScene);
 
         movieScene.getStylesheets().add("CSS.css");
@@ -74,6 +74,29 @@ public class MoviePage {
 
         root.setTop(topPane);
 
+
+
+        WebView trailer = new WebView();
+
+        if (movieID==1) { // Here the movieId that bas been passed from the Homepage is being checked with a number.
+            trailer.getEngine().load("https://www.youtube.com/embed/ayTnvVpj9t4");// The URL is then linked (manually)
+            trailer.setPrefSize(640, 390);
+
+        }if (movieID == 2) {
+            trailer.getEngine().load("https://www.youtube.com/embed/d2S8D_SCAJY");
+            trailer.setPrefSize(640, 390);
+
+        }else if (movieID == 3){
+            trailer.getEngine().load("https://www.youtube.com/embed/0pdqf4P9MB8");
+            trailer.setPrefSize(640,390);
+        }
+
+
+
+        root.setCenter(trailer);
+
+
+
         // LEEEEEEEFT FOR PICTUREEEEEE//
         VBox leftPicture = new VBox(20);
         leftPicture.setPrefSize(200, 50);
@@ -89,7 +112,7 @@ public class MoviePage {
 
 
 
-        Movie movie = MovieService.selectById(movieID, Main.database);
+        /*Movie movie = MovieService.selectById(movieID, Main.database);
         System.out.println((movie.toString()));
         String movieFileName = movie.getfileName();
         String movieTitle = movie.getmovieTitle();
@@ -106,26 +129,19 @@ public class MoviePage {
 
         trailerVideo.setFitWidth(341);
         trailerVideo.setFitHeight(200);
-        middlePane.getChildren().add(trailerVideo);
-
-
-        YoutubeUrl url = YoutubeUrlService.selectByID((urlID, Main.database);
-        System.out.println(url.toString());
+        middlePane.getChildren().add(trailerVideo);*/
 
 
 
 
-        WebView trailer = new WebView();
-        thisTrailer = movie;
-        trailer.getEngine().load(YoutubeUrlService.selectByID(movie););
-        trailer.setPrefSize(640, 390);
 
 
-        root.setBottom(trailer);
 
 
-        root.setCenter(middlePane);
+
     }
+
+
 }
 
 
