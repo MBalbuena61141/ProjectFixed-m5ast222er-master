@@ -125,7 +125,7 @@ public class MoviePage {
         MediaView trailerVideo = new MediaView(trailerPlayer);
 
         Button random = new Button(movieTitle + "hi");
-        middlePane.getChildren().add(random);
+        middlePane.getChildren().add(random)
 
         trailerVideo.setFitWidth(341);
         trailerVideo.setFitHeight(200);
