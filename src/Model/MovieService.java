@@ -11,7 +11,7 @@ public class MovieService {
 
         Movie result = null;
 
-        PreparedStatement statement = database.newStatement("Select movieID, fileName, movieTitle FROM Movie WHERE movieID = ?");
+        PreparedStatement statement = database.newStatement("Select movieID, movieUrl, movieTitle FROM Movie WHERE movieID = ?");
 
         try {
             if (statement != null) {
@@ -22,7 +22,7 @@ public class MovieService {
 
                 if (results != null) {
 
-                    result = new Movie(results.getInt("movieID"), results.getString("movieTitle"), results.getString("fileName"));
+                    result = new Movie(results.getInt("movieID"), results.getString("movieTitle"), results.getString("movieUrl"));
 
                 }
             }

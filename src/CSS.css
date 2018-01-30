@@ -45,3 +45,10 @@
 -fx-background-color : purple;
 
 }
+web-view{
+    -fx-font-scale: 1;
+    -fx-min-width: 100px;
+    -fx-min-height: 100px;
+    -fx-pref-width: 100%;
+    -fx-pref-height: 100%;
+}

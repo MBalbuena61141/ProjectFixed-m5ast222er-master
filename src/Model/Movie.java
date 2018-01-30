@@ -4,45 +4,46 @@ public class Movie {
 
     private int movieID;
     private String movieTitle;
-    private String fileName;
+    private String movieUrl;
 
     public Movie(int movieID, String movieTitle, String fileName) {
         this.movieID = movieID;
         this.movieTitle = movieTitle;
-        this.fileName = fileName;
+        this.movieUrl = fileName;
 
     }
 
-    public int getmovieID() {
+    public int getMovieID() {
         return movieID;
     }
 
-    public void setmovieID(int movieID) {
+    public void setMovieID(int movieID) {
         this.movieID = movieID;
     }
 
-    public String getmovieTitle() {
+    public String getMovieTitle() {
         return movieTitle;
     }
 
-    public void setmovieTitle(String movieTitle) {
+    public void setMovieTitle(String movieTitle) {
         this.movieTitle = movieTitle;
     }
 
-    public String getfileName() {
-        return fileName;
+    public String getMovieUrl() {
+        return movieUrl;
     }
 
-    public void setfileName(String fileName) {
-        this.fileName = fileName;
+    public void setMovieUrl(String movieUrl) {
+        this.movieUrl = movieUrl;
     }
+
 
     @Override
     public String toString() {
         return "movie{" +
                 "movieID=" + movieID +
                 ", movieTitle='" + movieTitle + '\'' +
-                ", fileName='" + fileName + '\'' +
+                ", fileName='" + movieUrl + '\'' +
                 '}';
     }
 }

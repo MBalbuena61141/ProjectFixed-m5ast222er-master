@@ -16,6 +16,7 @@ import javafx.scene.layout.VBox;
 import javafx.scene.media.Media;
 import javafx.scene.media.MediaPlayer;
 import javafx.scene.media.MediaView;
+import javafx.scene.web.WebView;
 
 import static View.Main.database;
 // comment
@@ -49,6 +50,7 @@ public class HomePage {
 
         Button search = new Button("Search");
         search.setPrefSize(200, 25);
+        search.setOnAction((ae)->HomePageController.loadSearchPage());
         search.getStyleClass().add("topButtons");
         topPane.getChildren().add(search);
 
@@ -56,6 +58,8 @@ public class HomePage {
         Button watchList = new Button("Your Watch List");
         watchList.setPrefSize(150, 25);
         watchList.getStyleClass().add("topButtons");
+        watchList.setOnAction((ae)->HomePageController.loadUserWatchList());
+
         topPane.getChildren().add(watchList);
 
         Button logIn = new Button("LogIn");
@@ -98,18 +102,20 @@ public class HomePage {
 
         Movie thisMovie = MovieService.selectById(movieID,database);
 
-        Media trailerMedia = new Media(Main.class.getResource("../Videos/" + thisMovie.getfileName()).toString());
-        MediaPlayer trailerPlayer = new MediaPlayer(trailerMedia);
-        MediaView trailerVideo = new MediaView(trailerPlayer);
-        trailerVideo.setFitWidth(341);
-        trailerVideo.setFitHeight(200);
-        pane.getChildren().add(trailerVideo);
+        HBox trailerContainer = new HBox();
+        trailerContainer.setPrefSize(390,200);
 
-        Button trailerButton = new Button(thisMovie.getmovieTitle());
-        Button movieButton = new Button(thisMovie.getmovieTitle());
+        WebView trailer = new WebView();
+        trailer.setPrefSize(390, 200);
+        trailer.getEngine().load(thisMovie.getMovieUrl());
+        trailerContainer.getChildren().add(trailer);
 
-       trailerButton.setOnAction((ae) -> trailerPlayer.play());
-       movieButton.setOnAction((ae)->HomePageController.loadMoviePage(movieID));
+        pane.getChildren().add(trailerContainer);
+
+
+        Button trailerButton = new Button(thisMovie.getMovieTitle());
+        Button movieButton = new Button(thisMovie.getMovieTitle());
+        movieButton.setOnAction((ae)->HomePageController.loadMoviePage(thisMovie));
 
 
         trailerButton.setPrefSize(100, 50);

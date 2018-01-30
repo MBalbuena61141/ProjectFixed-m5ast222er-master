@@ -9,6 +9,7 @@ import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.HBox;
+import javafx.scene.layout.Pane;
 import javafx.scene.layout.VBox;
 import javafx.scene.media.Media;
 import javafx.scene.media.MediaPlayer;
@@ -22,13 +23,11 @@ public class MoviePage {
 
 
 
+    public static void makeMoviePage(Movie movie) {
 
-
-    public static void makeMoviePage(int movieID) {
-
-        System.out.println("the page that has loaded is for the movie" + movieID);
+        //System.out.println("the page that has loaded is for the movie" + movieID);
         BorderPane root = new BorderPane();
-        Scene movieScene = new Scene(root, 1024, 768);
+        Scene movieScene = new Scene(root, 1024, 758);
 
 
 
@@ -47,6 +46,7 @@ public class MoviePage {
 
         Button logo = new Button("Logo");
         logo.getStyleClass().add("Logo");
+        logo.setOnAction((ae) -> HomePageController.loadHomePage());
         topPane.getChildren().add(logo);
 
         Button search = new Button("Search");
@@ -58,6 +58,7 @@ public class MoviePage {
         Button watchList = new Button("Your Watch List");
         watchList.setPrefSize(150, 25);
         watchList.getStyleClass().add("topButtons");
+        watchList.setOnAction((ae)->HomePageController.loadUserWatchList());
         topPane.getChildren().add(watchList);
 
         Button logIn = new Button("LogIn");
@@ -74,62 +75,36 @@ public class MoviePage {
 
         root.setTop(topPane);
 
+        VBox leftPane = new VBox();
+        leftPane.setPrefSize(195,1024);
 
+
+        root.setLeft(leftPane);
+
+        VBox rightPane = new VBox();
+        rightPane.setPrefSize(195,850);
+        rightPane.getStyleClass().add("pane");
+
+        root.setRight(rightPane);
+
+
+
+        VBox trailerMiddle = new VBox();
+        trailerMiddle.setPrefSize(840, 390);
+        trailerMiddle.getStyleClass().add("web-view");
+        trailerMiddle.setPrefSize(400,250);
 
         WebView trailer = new WebView();
+        trailer.setPrefSize(200, 390);
 
-        if (movieID==1) { // Here the movieId that bas been passed from the Homepage is being checked with a number.
-            trailer.getEngine().load("https://www.youtube.com/embed/ayTnvVpj9t4");// The URL is then linked (manually)
-            trailer.setPrefSize(640, 390);
-
-        }if (movieID == 2) {
-            trailer.getEngine().load("https://www.youtube.com/embed/d2S8D_SCAJY");
-            trailer.setPrefSize(640, 390);
-
-        }else if (movieID == 3){
-            trailer.getEngine().load("https://www.youtube.com/embed/0pdqf4P9MB8");
-            trailer.setPrefSize(640,390);
-        }
+         // Here the movieId that bas been passed from the Homepage is being checked with a number.
+            trailer.getEngine().load(movie.getMovieUrl());// The URL is then linked (manually)
 
 
-
-        root.setCenter(trailer);
-
-
-
-        // LEEEEEEEFT FOR PICTUREEEEEE//
-        VBox leftPicture = new VBox(20);
-        leftPicture.setPrefSize(200, 50);
-        leftPicture.getStyleClass().add("leftPicture");
-
-        root.setLeft(leftPicture);
-
-        // MIDDLEEEE FOR VIDEO//
-
-        HBox middlePane = new HBox(20);
-        middlePane.setPrefSize(1024, 100);
-        middlePane.getStyleClass().add("moviePane");
+        trailerMiddle.getChildren().add(trailer);
+        root.setCenter(trailerMiddle);
 
 
-
-        /*Movie movie = MovieService.selectById(movieID, Main.database);
-        System.out.println((movie.toString()));
-        String movieFileName = movie.getfileName();
-        String movieTitle = movie.getmovieTitle();
-
-        URL mediaURL = MovieService.class.getResource("../Videos/" + movieFileName);
-        //to print in console what is in mediaURL:
-        System.out.println(mediaURL.toString());
-        Media trailerMedia = new Media(mediaURL.toString());
-        MediaPlayer trailerPlayer = new MediaPlayer(trailerMedia);
-        MediaView trailerVideo = new MediaView(trailerPlayer);
-
-        Button random = new Button(movieTitle + "hi");
-        middlePane.getChildren().add(random)
-
-        trailerVideo.setFitWidth(341);
-        trailerVideo.setFitHeight(200);
-        middlePane.getChildren().add(trailerVideo);*/
 
 
 
