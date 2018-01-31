@@ -1,23 +1,13 @@
 package View;
 import Controller.HomePageController;
 import Model.Movie;
-import Model.MovieService;
-import Model.YoutubeUrl;
-import Model.YoutubeUrlService;
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.HBox;
-import javafx.scene.layout.Pane;
 import javafx.scene.layout.VBox;
-import javafx.scene.media.Media;
-import javafx.scene.media.MediaPlayer;
-import javafx.scene.media.MediaView;
 import javafx.scene.web.WebView;
-
-import java.net.URL;
-import java.util.ArrayList;
 
 public class MoviePage {
 
@@ -77,17 +67,12 @@ public class MoviePage {
 
         VBox leftPane = new VBox();
         leftPane.setPrefSize(195,1024);
-
-
         root.setLeft(leftPane);
 
         VBox rightPane = new VBox();
         rightPane.setPrefSize(195,850);
         rightPane.getStyleClass().add("pane");
-
         root.setRight(rightPane);
-
-
 
         VBox trailerMiddle = new VBox();
         trailerMiddle.setPrefSize(840, 390);
@@ -121,29 +106,4 @@ public class MoviePage {
 
 
 
-
-
-
-
-
-
-// STARTING MIDDLE SECTION <----------------->
-
-       /* private static  VBox makeMiddlePane (int movieID){
-
-            VBox trailerPane = new VBox(20);
-            trailerPane.setPrefSize(800, 384);
-            Movie thisMovie = MovieService.selectById(movieID,database);
-
-            Media trailerMedia = new Media(Main.class.getResource("../Videos/" + thisMovie.getfileName()).toString());
-            MediaPlayer trailerPlayer = new MediaPlayer(trailerMedia);
-            MediaView trailerVideo = new MediaView(trailerPlayer);
-            trailerVideo.setFitWidth(341);
-            trailerVideo.setFitHeight(200);
-            pane.getChildren().add(trailerVideo);
-
-            Button trailerButton = new Button(thisMovie.getmovieTitle());
-            trailerButton.setPrefSize(100,150);
-            trailerButton.setOnAction((ae) -> trailerPlayer.play());
-            trailerButton.setAlignment(Pos.CENTER);*/
 

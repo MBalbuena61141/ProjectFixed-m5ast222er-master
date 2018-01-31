@@ -14,6 +14,7 @@ public class HomePageController {
     public static  void loadSignUp() {
        View.SignUp.makeSignUp(Main.stage);
     }
+
     public  static void loadMoviePage(Movie movie) {
         View.MoviePage.makeMoviePage((movie));
     }
@@ -21,6 +22,7 @@ public class HomePageController {
     public static void loadSearchPage (){
         View.SearchPage.makeSearchPage();
     }
+
     public  static void loadHomePage () {
         View.HomePage.makeHomePage();
     }

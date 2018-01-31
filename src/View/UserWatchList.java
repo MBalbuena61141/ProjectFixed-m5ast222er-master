@@ -1,33 +1,28 @@
 package View;
 import Controller.HomePageController;
-import Model.Movie;
-import Model.MovieService;
-import Model.UserInfo;
-import Model.UserInfoService;
-import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
-import javafx.scene.layout.Border;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.HBox;
-import javafx.scene.layout.VBox;
 
-import static  View.Main.database;
-
+@SuppressWarnings("Duplicates")
 public class UserWatchList {
 
     public static void makeUserWatchList() {
-
         BorderPane root = new BorderPane();
 
         Scene scene = new Scene(root, 1024, 768);
-        scene.getStylesheets().add("CSS.css");
 
         Main.stage.setTitle("Application");
         Main.stage.setScene(scene);
         Main.stage.show();
+
+        scene.getStylesheets().add("CSS.css");
+
+
+        //Top Buttons (Logo, search, watchlist and login/sign up)//
 
         HBox topPane = new HBox(20);
 
@@ -38,20 +33,20 @@ public class UserWatchList {
 
         Button logo = new Button("Logo");
         logo.getStyleClass().add("Logo");
-        logo.setOnAction((ae) -> HomePageController.loadHomePage());
         topPane.getChildren().add(logo);
 
         Button search = new Button("Search");
         search.setPrefSize(200, 25);
-        search.setOnAction((ae) -> HomePageController.loadSearchPage());
+        search.setOnAction((ae)->HomePageController.loadSearchPage());
         search.getStyleClass().add("topButtons");
         topPane.getChildren().add(search);
 
 
         Button watchList = new Button("Your Watch List");
         watchList.setPrefSize(150, 25);
-        watchList.setOnAction((ae)->HomePageController.loadUserWatchList());
         watchList.getStyleClass().add("topButtons");
+        watchList.setOnAction((ae)->HomePageController.loadUserWatchList());
+
         topPane.getChildren().add(watchList);
 
         Button logIn = new Button("LogIn");
@@ -66,7 +61,18 @@ public class UserWatchList {
         signUp.setOnAction((ae) -> HomePageController.loadSignUp());
         topPane.getChildren().add(signUp);
 
+
+        // UserInfo userName = UserInfoService.selectAll();
+
+        Label userLogged = new Label("Hello");
+        userLogged.setPrefSize(90,25);
+        userLogged.getStyleClass().add("topButtons");
+        topPane.getChildren().add(userLogged);
+
+
         root.setTop(topPane);
+
+
 
 
     }

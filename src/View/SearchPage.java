@@ -18,18 +18,21 @@ import static  View.Main.database;
 
 public class SearchPage {
 
-
-
-    public static void makeSearchPage(){
+    @SuppressWarnings("Duplicates")
+    public static void makeSearchPage() {
 
         BorderPane root = new BorderPane();
 
-        Scene scene= new Scene(root, 1024, 768);
-        scene.getStylesheets().add("CSS.css");
+        Scene scene = new Scene(root, 1024, 768);
 
         Main.stage.setTitle("Application");
         Main.stage.setScene(scene);
         Main.stage.show();
+
+        scene.getStylesheets().add("CSS.css");
+
+
+        //Top Buttons (Logo, search, watchlist and login/sign up)//
 
         HBox topPane = new HBox(20);
 
@@ -40,7 +43,6 @@ public class SearchPage {
 
         Button logo = new Button("Logo");
         logo.getStyleClass().add("Logo");
-        logo.setOnAction((ae)->HomePageController.loadHomePage());
         topPane.getChildren().add(logo);
 
         Button search = new Button("Search");
@@ -52,8 +54,9 @@ public class SearchPage {
 
         Button watchList = new Button("Your Watch List");
         watchList.setPrefSize(150, 25);
-       watchList.setOnAction((ae)->HomePageController.loadUserWatchList());
         watchList.getStyleClass().add("topButtons");
+        watchList.setOnAction((ae)->HomePageController.loadUserWatchList());
+
         topPane.getChildren().add(watchList);
 
         Button logIn = new Button("LogIn");
@@ -68,30 +71,27 @@ public class SearchPage {
         signUp.setOnAction((ae) -> HomePageController.loadSignUp());
         topPane.getChildren().add(signUp);
 
+        Label userLogged = new Label("Hello");
+        userLogged.setPrefSize(90,25);
+        userLogged.getStyleClass().add("topButtons");
+        topPane.getChildren().add(userLogged);
+
         root.setTop(topPane);
+
+        VBox leftPane = new VBox();
+        leftPane.setPrefSize(200,600);
+
+        root.setLeft(leftPane);
+
+
+        VBox rightPane = new VBox();
+        rightPane.setPrefSize(200,600);
+
+        root.setLeft(rightPane);
 
 
 
 
 
     }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 }
