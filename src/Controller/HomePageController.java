@@ -28,7 +28,9 @@ public class HomePageController {
     }
 
     public  static  void loadUserWatchList() {
-        View.UserWatchList.makeUserWatchList();
+        if(Main.userLogged != 0) {
+            View.UserWatchList.makeUserWatchList();
+        }
     }
 
 

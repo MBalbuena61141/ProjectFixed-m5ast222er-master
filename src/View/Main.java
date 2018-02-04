@@ -14,6 +14,7 @@ public class Main extends Application {
 
     public static DatabaseConnection database;
     public static Stage stage;
+    public static int userLogged;
 
     @Override
     public void start(Stage startStage) {

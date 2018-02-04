@@ -53,7 +53,8 @@ public class HomePage {
 
         Button watchList = new Button("Your Watch List");
         watchList.setPrefSize(150, 25);watchList.getStyleClass().add("topButtons");
-        watchList.setOnAction((ae)->HomePageController.loadUserWatchList());
+        watchList.setOnAction((ae) -> HomePageController.loadUserWatchList());
+
 
         topPane.getChildren().add(watchList);
 
@@ -69,12 +70,8 @@ public class HomePage {
         topPane.getChildren().add(signUp);
 
 
-            // UserInfo userName = UserInfoService.selectAll();
 
-        Label userLogged = new Label("Hello");
-        userLogged.setPrefSize(90,25);
-        userLogged.getStyleClass().add("topButtons");
-        topPane.getChildren().add(userLogged);
+
 
 
         root.setTop(topPane);       // <<<<<<< TOP

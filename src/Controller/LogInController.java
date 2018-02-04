@@ -13,6 +13,9 @@ import java.util.ArrayList;
 
 public class LogInController {
 
+    private static String thisuserName;
+    private static String thispassWord;
+
 
 
     public static void attemptLogin(String username, String password, Stage stage) {
@@ -25,14 +28,18 @@ public class LogInController {
             for (UserInfo u: allUsers) {
 
                 if (u.getUserName().equals(username)) {
+                    thisuserName = username;
 
                     if (u.getUserPassword().equals(password)) {
+                        thispassWord = password;
+
 
                         Alert success = new Alert(Alert.AlertType.CONFIRMATION);
                         success.setTitle ("Logged in successful");
                         success.setHeaderText("Logged in successful");
                         success.close();
                         stage.close();
+                        Main.userLogged = u.getUserID();
                         return;
 
 

@@ -1,12 +1,19 @@
 package View;
 import Controller.HomePageController;
-import Controller.LogInController;
+import Model.Movie;
+import Model.UserWatchListService;
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import javafx.scene.image.ImageView;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.HBox;
+import javafx.scene.layout.VBox;
+import javafx.scene.image.Image;
+
+import java.util.ArrayList;
+
 
 @SuppressWarnings("Duplicates")
 public class UserWatchList {
@@ -73,6 +80,24 @@ public class UserWatchList {
 
         root.setTop(topPane);
 
+
+        VBox rightPane = new VBox();
+        rightPane.setPrefSize(200,600);
+
+        String url = Main.class.getResource("../Images/In_a_Heartbeat,_poster.jpg").toString();
+        //Image img = ImageIO.read(Main.class.getResource("../Images/In_a_Heartbeat,_poster.jpg").toString());
+
+        ImageView imageView = new ImageView();
+        Image img = new Image(url);
+        imageView.setImage(img);
+
+        rightPane.getChildren().add(imageView);
+        root.setRight(rightPane);
+
+
+
+        ArrayList<Movie> userMovies = new ArrayList<>();
+        UserWatchListService.selectMoviesByUserID(1, userMovies, Main.database);
 
 
 

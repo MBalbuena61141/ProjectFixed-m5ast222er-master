@@ -48,6 +48,8 @@ public class LogIn {
         grid.getChildren().add(userPass);
 
 
+
+
         // Button to sign in and close
         Button SignUpButton = new Button("Loging in");
         SignUpButton.setTranslateX(100);
