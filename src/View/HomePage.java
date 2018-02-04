@@ -3,8 +3,7 @@ package View;
 import Controller.HomePageController;
 import Model.Movie;
 import Model.MovieService;
-import Model.UserInfo;
-import Model.UserInfoService;
+
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
@@ -13,19 +12,16 @@ import javafx.scene.control.Label;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
-import javafx.scene.media.Media;
-import javafx.scene.media.MediaPlayer;
-import javafx.scene.media.MediaView;
+
 import javafx.scene.web.WebView;
 
 import static View.Main.database;
 // comment
 public class HomePage {
 
+
     public static void makeHomePage() {
-
         BorderPane root = new BorderPane();
-
         Scene scene = new Scene(root, 1024, 768);
 
         Main.stage.setTitle("Application");
@@ -56,8 +52,7 @@ public class HomePage {
 
 
         Button watchList = new Button("Your Watch List");
-        watchList.setPrefSize(150, 25);
-        watchList.getStyleClass().add("topButtons");
+        watchList.setPrefSize(150, 25);watchList.getStyleClass().add("topButtons");
         watchList.setOnAction((ae)->HomePageController.loadUserWatchList());
 
         topPane.getChildren().add(watchList);
@@ -67,7 +62,6 @@ public class HomePage {
         logIn.getStyleClass().add("topButtons");
         logIn.setOnAction((ae) -> HomePageController.loadLogIn());
         topPane.getChildren().add(logIn);
-
         Button signUp = new Button("SignUp");
         signUp.setPrefSize(90, 25);
         // signUp.getStyleClass().add("topButtons");
@@ -75,7 +69,7 @@ public class HomePage {
         topPane.getChildren().add(signUp);
 
 
-       // UserInfo userName = UserInfoService.selectAll();
+            // UserInfo userName = UserInfoService.selectAll();
 
         Label userLogged = new Label("Hello");
         userLogged.setPrefSize(90,25);
@@ -84,82 +78,61 @@ public class HomePage {
 
 
         root.setTop(topPane);       // <<<<<<< TOP
-
-        // CENTRE SECTION STARTS.
+            // CENTRE SECTION STARTS.
 
 
 
         root.setLeft(makeTrailerPane(1));
         root.setCenter(makeTrailerPane(2));
         root.setRight(makeTrailerPane(3));
+        }
+
+        public static VBox makeTrailerPane(int movieID) {
+
+            VBox pane = new VBox(20);
+            pane.setPrefSize(341, 153);
+
+            Movie thisMovie = MovieService.selectById(movieID,database);
+
+            HBox trailerContainer = new HBox();
+            trailerContainer.setPrefSize(390,200);
+
+            WebView trailer = new WebView();
+            trailer.setPrefSize(390, 200);
+            trailer.getEngine().load(thisMovie.getMovieUrl());
+            trailerContainer.getChildren().add(trailer);
+
+            pane.getChildren().add(trailerContainer);
+
+
+            Button trailerButton = new Button(thisMovie.getMovieTitle());
+            Button movieButton = new Button(thisMovie.getMovieTitle());
+            movieButton.setOnAction((ae)->HomePageController.loadMoviePage(thisMovie));
+
+
+            trailerButton.setPrefSize(100, 50);
+            pane.getChildren().add(trailerButton);
+            trailerButton.setAlignment(Pos.CENTER);
+
+            movieButton.setPrefSize(75,50);
+            pane.getChildren().add(movieButton);
+            movieButton.setAlignment(Pos.CENTER);
+
+            Label someText1 = new Label("Hello1");
+            pane.getChildren().add(someText1);
+
+            Label someText2 = new Label("Hello2");
+            pane.getChildren().add(someText2);
+
+            Label someText3 = new Label("Hello3");
+            pane.getChildren().add(someText3);
+
+
+
+            return pane;
+
+
+
+        }
 
     }
-
-    public static VBox makeTrailerPane(int movieID) {
-
-        VBox pane = new VBox(20);
-        pane.setPrefSize(341, 153);
-
-        Movie thisMovie = MovieService.selectById(movieID,database);
-
-        HBox trailerContainer = new HBox();
-        trailerContainer.setPrefSize(390,200);
-
-        WebView trailer = new WebView();
-        trailer.setPrefSize(390, 200);
-        trailer.getEngine().load(thisMovie.getMovieUrl());
-        trailerContainer.getChildren().add(trailer);
-
-        pane.getChildren().add(trailerContainer);
-
-
-        Button trailerButton = new Button(thisMovie.getMovieTitle());
-        Button movieButton = new Button(thisMovie.getMovieTitle());
-        movieButton.setOnAction((ae)->HomePageController.loadMoviePage(thisMovie));
-
-
-        trailerButton.setPrefSize(100, 50);
-        pane.getChildren().add(trailerButton);
-        trailerButton.setAlignment(Pos.CENTER);
-
-        movieButton.setPrefSize(75,50);
-        pane.getChildren().add(movieButton);
-        movieButton.setAlignment(Pos.CENTER);
-
-        Label someText1 = new Label("Hello1");
-        pane.getChildren().add(someText1);
-
-        Label someText2 = new Label("Hello2");
-        pane.getChildren().add(someText2);
-
-        Label someText3 = new Label("Hello3");
-        pane.getChildren().add(someText3);
-
-
-
-        return pane;
-
-    }
-
-
-    public static VBox makeTitlePane (String name) {
-
-
-        VBox pane = new VBox(20);
-        pane.setPadding(new Insets(40));
-        pane.setPrefSize(341, 153);
-
-        pane.setStyle("-fx-background-color: " + name + ";");
-
-        Label movieName = new Label(name);
-        movieName.setPrefSize(50, 50);
-        pane.getChildren().add(movieName);
-
-
-
-        return pane;
-
-
-    }
-
-}

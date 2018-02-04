@@ -4,22 +4,22 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
-public class MovieService {
+public class UserWatchListService {
 
-    public static Movie selectById(int id, DatabaseConnection database) {
+    public static UserWatchList selectById(int id, DatabaseConnection database) {
 
-        Movie result = null;
+        UserWatchList result = null;
 
-        PreparedStatement statement = database.newStatement("SELECT movieID, movieTitle, movieUrl, movieImage FROM Movie WHERE movieID = ?");
+        PreparedStatement statement = database.newStatement("SELECT movieID, userID FROM UserWatchList");
 
         try {
             if (statement != null) {
 
-                statement.setInt(1,id);
+                statement.setInt(1, id);
                 ResultSet results = database.executeQuery(statement);
 
                 if (results != null) {
-                    result = new Movie(results.getInt("movieID"), results.getString("movieTitle"), results.getString("movieUrl"), results.getString("movieImage"));
+                    result = new UserWatchList(results.getInt("userID"), results.getInt("userID"));
                 }
             }
         } catch (SQLException resultsException) {
@@ -29,3 +29,7 @@ public class MovieService {
         return result;
     }
 }
+
+
+
+

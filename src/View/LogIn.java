@@ -9,6 +9,8 @@ import javafx.scene.layout.GridPane;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 
+import java.beans.EventHandler;
+
 
 public class LogIn {
 
@@ -46,11 +48,8 @@ public class LogIn {
         grid.getChildren().add(userPass);
 
 
-
-
-
         // Button to sign in and close
-        Button SignUpButton = new Button("Signing in");
+        Button SignUpButton = new Button("Loging in");
         SignUpButton.setTranslateX(100);
         SignUpButton.setTranslateY(100);
         SignUpButton.setOnAction(EventHandler -> LogInController.attemptLogin(userName.getText(), userPass.getText(), logInStage));

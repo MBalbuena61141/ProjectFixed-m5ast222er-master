@@ -7,7 +7,7 @@ public class Movie {
     private String movieUrl;
     private  String movieImage;
 
-    public Movie(int movieID, String movieTitle, String movieUrl) {
+    public Movie(int movieID, String movieTitle, String movieUrl,String movieImage) {
         this.movieID = movieID;
         this.movieTitle = movieTitle;
         this.movieUrl = movieUrl;
@@ -46,6 +46,7 @@ public class Movie {
     public void setMovieImage(String movieImage) {
         this.movieImage = movieImage;
     }
+
 
     @Override
     public String toString() {

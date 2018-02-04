@@ -10,8 +10,9 @@ public class SignUpController {
 
     public static void processSignUp(String username, String password, Stage stage) {
 
-        UserInfo newUser = new UserInfo(0, username, password);
+        UserInfo newUser = new UserInfo(0, username, password );
         UserInfoService.save(newUser, Main.database);
+
 
         Alert alert = new Alert(Alert.AlertType.INFORMATION);
         alert.setTitle("Information Dialog");

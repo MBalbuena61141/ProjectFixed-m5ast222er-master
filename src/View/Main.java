@@ -16,29 +16,12 @@ public class Main extends Application {
     public static Stage stage;
 
     @Override
-    public void start(Stage startStage) throws Exception {
+    public void start(Stage startStage) {
 
         stage = startStage;
         database = new DatabaseConnection("DatabaseProject.db");
 
         HomePage.makeHomePage();
-        //LogIn.makeLogIn(startStage);
 
-        }
-
-
-//comment
-
-
-
+    }
 }
-
-
-
-
-
-
-
-
-
-

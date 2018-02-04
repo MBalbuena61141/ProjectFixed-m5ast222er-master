@@ -1,5 +1,6 @@
 package View;
 import Controller.HomePageController;
+import Controller.LogInController;
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
@@ -15,9 +16,8 @@ public class UserWatchList {
 
         Scene scene = new Scene(root, 1024, 768);
 
-        Main.stage.setTitle("Application");
         Main.stage.setScene(scene);
-        Main.stage.show();
+
 
         scene.getStylesheets().add("CSS.css");
 
@@ -64,10 +64,11 @@ public class UserWatchList {
 
         // UserInfo userName = UserInfoService.selectAll();
 
-        Label userLogged = new Label("Hello");
+        Label userLogged = new Label("hi");
         userLogged.setPrefSize(90,25);
         userLogged.getStyleClass().add("topButtons");
         topPane.getChildren().add(userLogged);
+
 
 
         root.setTop(topPane);
