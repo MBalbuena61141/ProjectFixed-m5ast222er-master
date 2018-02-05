@@ -25,21 +25,19 @@ public class LogInController {
 
             UserInfoService.selectAll(allUsers, Main.database);
 
-            for (UserInfo u: allUsers) {
+            for (UserInfo thisUser: allUsers) {
 
-                if (u.getUserName().equals(username)) {
+                if (thisUser.getUserName().equals(username)) {
                     thisuserName = username;
 
-                    if (u.getUserPassword().equals(password)) {
+                    if (thisUser.getUserPassword().equals(password)) {
                         thispassWord = password;
-
-
                         Alert success = new Alert(Alert.AlertType.CONFIRMATION);
                         success.setTitle ("Logged in successful");
                         success.setHeaderText("Logged in successful");
                         success.close();
                         stage.close();
-                        Main.userLogged = u.getUserID();
+                        Main.userLogged = thisUser.getUserID();
                         return;
 
 

@@ -9,7 +9,6 @@ public class UserWatchList {
         this.userID = userID;
         this.movieID = movieID;
 
-
     }
 
     public int getUserID() {
@@ -28,4 +27,5 @@ public class UserWatchList {
         this.movieID = movieID;
     }
 }
+
 

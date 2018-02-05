@@ -3,6 +3,7 @@ package Controller;
 import Model.Movie;
 import Model.MovieService;
 import View.Main;
+import javafx.scene.control.Alert;
 import javafx.stage.Stage;
 
 public class HomePageController {
@@ -30,11 +31,17 @@ public class HomePageController {
     public  static  void loadUserWatchList() {
         if(Main.userLogged != 0) {
             View.UserWatchList.makeUserWatchList();
+            System.out.println(Main.userLogged);
+        }
+            else {
+                Alert alert = new Alert(Alert.AlertType.ERROR);
+                alert.setTitle("Error");
+                alert.setHeaderText("Log In required");
+                alert.setContentText("You need to log in before using your Watch List");
+                alert.showAndWait();
+            }
         }
     }
 
 
 
-
-
-}

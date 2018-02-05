@@ -29,8 +29,6 @@ public class UserWatchList {
         scene.getStylesheets().add("CSS.css");
 
 
-        //Top Buttons (Logo, search, watchlist and login/sign up)//
-
         HBox topPane = new HBox(20);
 
         topPane.setAlignment(Pos.TOP_LEFT);
@@ -81,23 +79,41 @@ public class UserWatchList {
         root.setTop(topPane);
 
 
-        VBox rightPane = new VBox();
-        rightPane.setPrefSize(200,600);
-
-        String url = Main.class.getResource("../Images/In_a_Heartbeat,_poster.jpg").toString();
-        //Image img = ImageIO.read(Main.class.getResource("../Images/In_a_Heartbeat,_poster.jpg").toString());
-
-        ImageView imageView = new ImageView();
-        Image img = new Image(url);
-        imageView.setImage(img);
-
-        rightPane.getChildren().add(imageView);
-        root.setRight(rightPane);
-
-
+        HBox space = new HBox(20);
+        //pace.set
 
         ArrayList<Movie> userMovies = new ArrayList<>();
-        UserWatchListService.selectMoviesByUserID(1, userMovies, Main.database);
+        UserWatchListService.selectMoviesByUserID(userMovies, Main.database);
+
+        VBox leftPane = new VBox(20);
+        leftPane.setPrefSize(200,600);
+
+
+
+        for (Movie thisUserMovie: userMovies) {
+
+            System.out.println("Displaying movie " + thisUserMovie.toString());
+
+            ImageView imageView = new ImageView();
+            System.out.println("Trying to display " + "Images/" + thisUserMovie.getMovieImage());
+            Image img = new Image("Images/" + thisUserMovie.getMovieImage());
+            imageView.setImage(img);
+            imageView.setFitHeight(200);
+            imageView.setFitWidth(150);
+            leftPane.getChildren().add(imageView);
+
+        }
+        root.setLeft(leftPane);
+
+
+
+
+
+
+
+
+
+
 
 
 
