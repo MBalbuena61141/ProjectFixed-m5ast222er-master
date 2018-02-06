@@ -6,12 +6,14 @@ public class Movie {
     private String movieTitle;
     private String movieUrl;
     private  String movieImage;
+    private  String moviePlot;
 
-    public Movie(int movieID, String movieTitle, String movieUrl,String movieImage) {
+    public Movie(int movieID, String movieTitle, String movieUrl,String movieImage, String moviePlot) {
         this.movieID = movieID;
         this.movieTitle = movieTitle;
         this.movieUrl = movieUrl;
         this.movieImage = movieImage;
+        this.moviePlot = moviePlot;
 
     }
 
@@ -47,6 +49,13 @@ public class Movie {
         this.movieImage = movieImage;
     }
 
+    public String getMoviePlot() {
+        return moviePlot;
+    }
+
+    public void setMoviePlot(String moviePlot) {
+        this.moviePlot = moviePlot;
+    }
 
     @Override
     public String toString() {
@@ -54,6 +63,7 @@ public class Movie {
                 "movieTitle='" + movieTitle + '\'' +
                 ", movieUrl='" + movieUrl + '\'' +
                 ", movieImage='" + movieImage + '\'' +
+                ", moviePlot='" + moviePlot + '\'' +
                 '}';
     }
 }

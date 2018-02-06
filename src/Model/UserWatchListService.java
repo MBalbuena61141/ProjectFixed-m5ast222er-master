@@ -26,7 +26,7 @@ public class UserWatchListService {
 
                 if (results != null) {
                     while (results.next()) {
-                        userMovies.add(new Movie(results.getInt("movieID"), results.getString("movieTitle"), results.getString("movieUrl"),results.getString("movieImage")));
+                        userMovies.add(new Movie(results.getInt("movieID"), results.getString("movieTitle"), results.getString("movieUrl"), results.getString("movieImage"), results.getString("moviePlot")));
                     }
                 }
             }

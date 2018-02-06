@@ -10,7 +10,7 @@ public class MovieService {
 
         Movie result = null;
 
-        PreparedStatement statement = database.newStatement("SELECT movieID, movieTitle, movieUrl, movieImage FROM Movie WHERE movieID = ?");
+        PreparedStatement statement = database.newStatement("SELECT movieID, movieTitle, movieUrl, movieImage, moviePlot FROM Movie WHERE movieID = ?");
 
         try {
             if (statement != null) {
@@ -19,7 +19,7 @@ public class MovieService {
                 ResultSet results = database.executeQuery(statement);
 
                 if (results != null) {
-                    result = new Movie(results.getInt("movieID"), results.getString("movieTitle"), results.getString("movieUrl"), results.getString("movieImage"));
+                    result = new Movie(results.getInt("movieID"), results.getString("movieTitle"), results.getString("movieUrl"), results.getString("movieImage"), results.getString("moviePlot"));
                 }
             }
         } catch (SQLException resultsException) {
@@ -28,4 +28,10 @@ public class MovieService {
 
         return result;
     }
+
+
+
+
+
+
 }

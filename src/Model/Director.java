@@ -1,14 +1,17 @@
 package Model;
 
-public class Directors {
+public class Director {
+
     private int directorID;
     private String directorName;
 
-    public Directors(int directorID, String directorName) {
+    public Director(int directorID, String directorName){
+
         this.directorID = directorID;
         this.directorName = directorName;
-    }
 
+
+    }
 
     public int getDirectorID() {
         return directorID;
@@ -24,11 +27,12 @@ public class Directors {
 
     public void setDirectorName(String directorName) {
         this.directorName = directorName;
-
     }
 
     @Override
     public String toString() {
-        return directorName;
+        return "Director{" +
+                "directorName='" + directorName + '\'' +
+                '}';
     }
 }

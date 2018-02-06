@@ -41,11 +41,12 @@ public class UserWatchList {
 
         Button logo = new Button("Logo");
         logo.getStyleClass().add("Logo");
+        logo.setOnAction((ae)->HomePageController.loadHomePage());
         topPane.getChildren().add(logo);
 
         Button search = new Button("Search");
         search.setPrefSize(200, 25);
-        search.setOnAction((ae)->HomePageController.loadSearchPage());
+        search.setOnAction((ae) -> HomePageController.loadSearchPage());
         search.getStyleClass().add("topButtons");
         topPane.getChildren().add(search);
 
@@ -53,7 +54,7 @@ public class UserWatchList {
         Button watchList = new Button("Your Watch List");
         watchList.setPrefSize(150, 25);
         watchList.getStyleClass().add("topButtons");
-        watchList.setOnAction((ae)->HomePageController.loadUserWatchList());
+        watchList.setOnAction((ae) -> HomePageController.loadUserWatchList());
 
         topPane.getChildren().add(watchList);
 
@@ -73,36 +74,34 @@ public class UserWatchList {
         // UserInfo userName = UserInfoService.selectAll();
 
         Label userLogged = new Label("hi");
-        userLogged.setPrefSize(90,25);
+        userLogged.setPrefSize(90, 25);
         userLogged.getStyleClass().add("topButtons");
         topPane.getChildren().add(userLogged);
-
 
 
         root.setTop(topPane);
 
 
-
-
         ArrayList<Movie> userMovies = new ArrayList<>();
         UserWatchListService.selectMoviesByUserID(userMovies, Main.database);
 
+        VBox leftPane = new VBox();
+        leftPane.setPrefWidth(700);
+
         int panelHeight = 300;
         int panelTop = 40;
-        int buttonHeight = 100;
-        int buttonWidth = 100;
 
         for (int i = 0; i < userMovies.size(); i++) {
 
             System.out.println("Displaying movie " + userMovies.get(i).getMovieTitle());
 
-            HBox panel = new HBox(30);
-            panel.setPrefSize(800,150);
-            panel.setPadding(new Insets(15));
+            HBox imagePane = new HBox(15);
+            imagePane.setPrefSize(800, 150);
+            imagePane.setPadding(new Insets(15));
+            root.getChildren().add(imagePane);
 
-            panel.setTranslateY(panelTop);
-            panelTop += panelHeight;
-
+            imagePane.setTranslateY(panelTop);
+            //panelTop += panelHeight;
             ImageView imageView = new ImageView();
             System.out.println("Trying to display " + "Images/" + userMovies.get(i).getMovieImage());
 
@@ -110,37 +109,39 @@ public class UserWatchList {
             imageView.setImage(img);
             imageView.setFitHeight(280);
             imageView.setFitWidth(200);
+            imagePane.getChildren().add(imageView);
 
-            panel.getChildren().add(imageView);
+            VBox info = new VBox(2);
+            info.setPrefHeight(500);
+
+            imagePane.getChildren().add(info);
+
+            Button movieWatchButton = new Button("Click here to see movie");
+            movieWatchButton.setPrefSize(200, 50);
+            Movie thisMovie = userMovies.get(i);
+            movieWatchButton.setOnAction((ae)->HomePageController.loadMoviePage(thisMovie));
+            info.getChildren().add(movieWatchButton);
+
+            Label movieTitle = new Label("Title: " + userMovies.get(i).getMovieTitle());
+            movieTitle.setMaxWidth(500);
+            movieTitle.setPrefHeight(100);
+            info.getChildren().add(movieTitle);
+
+            Label moviePlot = new Label("Director: " + userMovies.get(i).getMoviePlot());
+            moviePlot.setMaxWidth(500);
+            moviePlot.setPrefHeight(100);
+            info.getChildren().add(moviePlot);
 
 
-            Button movieWatchButton = new Button("ADD");
-            movieWatchButton.setPrefSize(buttonHeight,buttonWidth);
-            movieWatchButton.setPadding(new Insets(15));
-            panel.getChildren().add(movieWatchButton);
-
-            root.getChildren().add(panel);
 
 
 
+            leftPane.getChildren().add(imagePane);
         }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+            root.setLeft(leftPane);
     }
 
-
 }
+
+
+

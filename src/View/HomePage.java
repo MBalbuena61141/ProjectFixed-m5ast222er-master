@@ -1,10 +1,11 @@
 package View;
 
 import Controller.HomePageController;
+import Model.Director;
+import Model.MovieDirectorService;
 import Model.Movie;
 import Model.MovieService;
 
-import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
@@ -14,6 +15,8 @@ import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 
 import javafx.scene.web.WebView;
+
+import java.util.ArrayList;
 
 import static View.Main.database;
 // comment
@@ -70,10 +73,6 @@ public class HomePage {
         topPane.getChildren().add(signUp);
 
 
-
-
-
-
         root.setTop(topPane);       // <<<<<<< TOP
             // CENTRE SECTION STARTS.
 
@@ -90,6 +89,7 @@ public class HomePage {
             pane.setPrefSize(341, 153);
 
             Movie thisMovie = MovieService.selectById(movieID,database);
+            ArrayList<Director> directors = MovieDirectorService.selectDirector(movieID,database);
 
             HBox trailerContainer = new HBox();
             trailerContainer.setPrefSize(390,200);
@@ -115,10 +115,16 @@ public class HomePage {
             pane.getChildren().add(movieButton);
             movieButton.setAlignment(Pos.CENTER);
 
-            Label someText1 = new Label("Hello1");
+            Label someText1 = new Label("Plot: "+ thisMovie.getMoviePlot());
             pane.getChildren().add(someText1);
 
-            Label someText2 = new Label("Hello2");
+            String directorNames = new String();
+
+            for (int i = 0; i< directors.size(); i++){
+                directorNames += " - " + directors.get(i).getDirectorName();
+            }
+
+            Label someText2 = new Label("Director:"+ directorNames );
             pane.getChildren().add(someText2);
 
             Label someText3 = new Label("Hello3");

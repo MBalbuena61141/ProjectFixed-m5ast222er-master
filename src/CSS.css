@@ -30,7 +30,7 @@
     -fx-text-fill: navajowhite;
     -fx-font-size: 10;
     -fx-font-family: "Arial Black";
-    -fx-background-color: grey;
+    -fx-background-color: purple;
 
 }
 
@@ -39,10 +39,6 @@
 -fx-background-color: grey;
 
 }
-
-.leftPicture {
-
--fx-background-color : purple;
 
 }
 web-view{

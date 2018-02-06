@@ -3,12 +3,12 @@ package Model;
 public class MovieDirectors {
 
     private int directorID;
-    private String directorName;
+    private int movieID;
 
 
     public MovieDirectors(int directorID, String directorName) {
         this.directorID = directorID;
-        this.directorName = directorName;
+        this.movieID = movieID;
     }
 
     public int getDirectorID() {
@@ -19,17 +19,12 @@ public class MovieDirectors {
         this.directorID = directorID;
     }
 
-    public String getDirectorName() {
-        return directorName;
+    public int getMovieID() {
+        return movieID;
     }
 
-    public void setDirectorName(String directorName) {
-        this.directorName = directorName;
-    }
-
-    @Override
-    public String toString() {
-        return directorName;
+    public void setMovieID(int movieID) {
+        this.movieID = movieID;
     }
 }
 
