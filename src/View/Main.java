@@ -21,7 +21,7 @@ public class Main extends Application {
 
         stage = startStage;
         database = new DatabaseConnection("DatabaseProject.db");
-
+        userLogged = 1;
         HomePage.makeHomePage();
 
     }

@@ -2,6 +2,7 @@ package View;
 import Controller.HomePageController;
 import Model.Movie;
 import Model.UserWatchListService;
+import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
@@ -9,6 +10,7 @@ import javafx.scene.control.Label;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.HBox;
+import javafx.scene.layout.Pane;
 import javafx.scene.layout.VBox;
 import javafx.scene.image.Image;
 
@@ -79,31 +81,51 @@ public class UserWatchList {
         root.setTop(topPane);
 
 
-        HBox space = new HBox(20);
-        //pace.set
+
 
         ArrayList<Movie> userMovies = new ArrayList<>();
         UserWatchListService.selectMoviesByUserID(userMovies, Main.database);
 
-        VBox leftPane = new VBox(20);
-        leftPane.setPrefSize(200,600);
+        int panelHeight = 300;
+        int panelTop = 40;
+        int buttonHeight = 100;
+        int buttonWidth = 100;
 
+        for (int i = 0; i < userMovies.size(); i++) {
 
+            System.out.println("Displaying movie " + userMovies.get(i).getMovieTitle());
 
-        for (Movie thisUserMovie: userMovies) {
+            HBox panel = new HBox(30);
+            panel.setPrefSize(800,150);
+            panel.setPadding(new Insets(15));
 
-            System.out.println("Displaying movie " + thisUserMovie.toString());
+            panel.setTranslateY(panelTop);
+            panelTop += panelHeight;
 
             ImageView imageView = new ImageView();
-            System.out.println("Trying to display " + "Images/" + thisUserMovie.getMovieImage());
-            Image img = new Image("Images/" + thisUserMovie.getMovieImage());
+            System.out.println("Trying to display " + "Images/" + userMovies.get(i).getMovieImage());
+
+            Image img = new Image("Images/" + userMovies.get(i).getMovieImage());
             imageView.setImage(img);
-            imageView.setFitHeight(200);
-            imageView.setFitWidth(150);
-            leftPane.getChildren().add(imageView);
+            imageView.setFitHeight(280);
+            imageView.setFitWidth(200);
+
+            panel.getChildren().add(imageView);
+
+
+            Button movieWatchButton = new Button("ADD");
+            movieWatchButton.setPrefSize(buttonHeight,buttonWidth);
+            movieWatchButton.setPadding(new Insets(15));
+            panel.getChildren().add(movieWatchButton);
+
+            root.getChildren().add(panel);
+
+
 
         }
-        root.setLeft(leftPane);
+
+
+
 
 
 
