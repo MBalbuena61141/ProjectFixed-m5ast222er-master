@@ -1,7 +1,10 @@
 package View;
 import Controller.HomePageController;
+import Model.Actor;
+import Model.ActorService;
 import Model.Movie;
-import Model.MovieService;
+
+import Model.UserWatchListService;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
@@ -12,7 +15,8 @@ import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import javafx.scene.web.WebView;
 
-import java.awt.*;
+import java.util.ArrayList;
+
 
 public class MoviePage {
 
@@ -80,6 +84,10 @@ public class MoviePage {
 
         //MIDDLE PANEE
 
+
+        ArrayList<Actor> selectActor  = new ArrayList<>();
+        ArrayList<Actor> selectDirector = ActorService.selectActor(movieID ,database);
+
         VBox centrePane = new VBox(10);
         centrePane.setPadding(new Insets(10));
         centrePane.setPrefSize(840, 500);
@@ -94,9 +102,21 @@ public class MoviePage {
         trailer.getEngine().load(movie.getMovieUrl());// The URL is then linked (manually)
         centrePane.getChildren().add(trailer);
 
-        Label someText1 = new Label("Title:"+ movie.getMovieTitle());
-        someText1.setWrapText(true);
-        centrePane.getChildren().add(someText1);
+        Label title = new Label("Title:"+ movie.getMovieTitle());
+        title.setWrapText(true);
+        centrePane.getChildren().add(title);
+
+        Label plot = new Label("Title:"+ movie.getMoviePlot());
+        plot.setWrapText(true);
+        centrePane.getChildren().add(plot);
+
+        Label movieCast = new Label("Title:"+ movie.getMoviePlot());
+        movieCast.setWrapText(true);
+        centrePane.getChildren().add(movieCast);
+
+
+
+
 
         root.setCenter(centrePane);
     }

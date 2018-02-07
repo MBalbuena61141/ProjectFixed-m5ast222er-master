@@ -3,12 +3,16 @@ package Model;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.List;
 
 public class ActorService {
-    public static void selectAll(List<Actor> targetList, DatabaseConnection database) {
 
-        PreparedStatement statement = database.newStatement("SELECT actorID, actorName FROM Actor");
+    public static ArrayList<Actor> selectActor (int id, DatabaseConnection database) {
+
+        ArrayList<Actor> selectActor = new ArrayList<>();
+
+        PreparedStatement statement = database.newStatement("SELECT Actor.actorID, actorName FROM Actor INNER JOIN Cast ON actor.actorID = Cast.actorID WHERE Movie.movieID = ?");
 
         try {
             if (statement != null) {
@@ -17,12 +21,16 @@ public class ActorService {
 
                 if (results != null) {
                     while (results.next()) {
-                        targetList.add(new Actor(results.getInt("actorID"), results.getString("actorName")));
+                        selectActor.add(new Actor(results.getInt("actorID"), results.getString("actorName")));
                     }
                 }
             }
         } catch (SQLException resultsException) {
             System.out.println("Database select all error: " + resultsException.getMessage());
         }
+
+        return selectActor;
     }
+
+
 }
