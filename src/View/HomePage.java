@@ -116,7 +116,10 @@ public class HomePage {
             movieButton.setAlignment(Pos.CENTER);
 
             Label someText1 = new Label("Plot: "+ thisMovie.getMoviePlot());
+            someText1.setWrapText(true);
             pane.getChildren().add(someText1);
+
+
 
             String directorNames = new String();
 
@@ -127,8 +130,8 @@ public class HomePage {
             Label someText2 = new Label("Director:"+ directorNames );
             pane.getChildren().add(someText2);
 
-            Label someText3 = new Label("Hello3");
-            pane.getChildren().add(someText3);
+           Label someText3 = new Label("Hello3");
+           pane.getChildren().add(someText3);
 
 
 

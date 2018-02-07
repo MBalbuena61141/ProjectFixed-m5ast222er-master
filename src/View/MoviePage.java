@@ -1,16 +1,20 @@
 package View;
 import Controller.HomePageController;
 import Model.Movie;
+import Model.MovieService;
+import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
+import javafx.scene.control.Label;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import javafx.scene.web.WebView;
 
-public class MoviePage {
+import java.awt.*;
 
+public class MoviePage {
 
 
     public static void makeMoviePage(Movie movie) {
@@ -18,7 +22,6 @@ public class MoviePage {
         //System.out.println("the page that has loaded is for the movie" + movieID);
         BorderPane root = new BorderPane();
         Scene movieScene = new Scene(root, 1024, 758);
-
 
 
         Main.stage.setScene(movieScene);
@@ -48,7 +51,7 @@ public class MoviePage {
         Button watchList = new Button("Your Watch List");
         watchList.setPrefSize(150, 25);
         watchList.getStyleClass().add("topButtons");
-        watchList.setOnAction((ae)->HomePageController.loadUserWatchList());
+        watchList.setOnAction((ae) -> HomePageController.loadUserWatchList());
         topPane.getChildren().add(watchList);
 
         Button logIn = new Button("LogIn");
@@ -64,45 +67,45 @@ public class MoviePage {
         topPane.getChildren().add(signUp);
 
         root.setTop(topPane);
-
+        //LEEEEEFT PANEEE
         VBox leftPane = new VBox();
-        leftPane.setPrefSize(195,1024);
+        leftPane.setPrefSize(195, 1024);
         root.setLeft(leftPane);
 
+        //RIGHTTT PANEE
         VBox rightPane = new VBox();
-        rightPane.setPrefSize(195,850);
+        rightPane.setPrefSize(195, 850);
         rightPane.getStyleClass().add("pane");
         root.setRight(rightPane);
 
-        VBox trailerMiddle = new VBox();
-        trailerMiddle.setPrefSize(840, 390);
-        trailerMiddle.getStyleClass().add("web-view");
-        trailerMiddle.setPrefSize(400,250);
+        //MIDDLE PANEE
 
+        VBox centrePane = new VBox(10);
+        centrePane.setPadding(new Insets(10));
+        centrePane.setPrefSize(840, 500);
+        centrePane.getStyleClass().add("web-view");
+        centrePane.setPrefSize(400, 250);
+
+
+        //VIDEO ADDED
         WebView trailer = new WebView();
         trailer.setPrefSize(200, 390);
+        // Here the movieId that bas been passed from the Homepage is being checked with a number.
+        trailer.getEngine().load(movie.getMovieUrl());// The URL is then linked (manually)
+        centrePane.getChildren().add(trailer);
 
-         // Here the movieId that bas been passed from the Homepage is being checked with a number.
-            trailer.getEngine().load(movie.getMovieUrl());// The URL is then linked (manually)
+        Label someText1 = new Label("Title:"+ movie.getMovieTitle());
+        someText1.setWrapText(true);
+        centrePane.getChildren().add(someText1);
 
-
-        trailerMiddle.getChildren().add(trailer);
-        root.setCenter(trailerMiddle);
-
-
-
-
-
-
-
-
-
-
-
+        root.setCenter(centrePane);
     }
-
-
 }
+
+
+
+
+
 
 
 

@@ -128,8 +128,9 @@ public class UserWatchList {
             info.getChildren().add(movieTitle);
 
             Label moviePlot = new Label("Director: " + userMovies.get(i).getMoviePlot());
+            moviePlot.setWrapText(true);
             moviePlot.setMaxWidth(500);
-            moviePlot.setPrefHeight(100);
+            moviePlot.setPrefHeight(50);
             info.getChildren().add(moviePlot);
 
 
