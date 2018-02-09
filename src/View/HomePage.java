@@ -6,10 +6,12 @@ import Model.MovieDirectorService;
 import Model.Movie;
 import Model.MovieService;
 
+import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import javafx.scene.control.TextField;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
@@ -31,10 +33,9 @@ public class HomePage {
         Main.stage.setScene(scene);
         Main.stage.show();
 
+        root.setPadding(new Insets(10));
+
         scene.getStylesheets().add("CSS.css");
-
-
-        //Top Buttons (Logo, search, watchlist and login/sign up)//
 
         HBox topPane = new HBox(20);
 
@@ -42,22 +43,23 @@ public class HomePage {
         topPane.getStyleClass().add("logoPane");
         BorderPane.setAlignment(topPane, Pos.TOP_CENTER);
 
-
         Button logo = new Button("Logo");
         logo.getStyleClass().add("Logo");
         topPane.getChildren().add(logo);
 
-        Button search = new Button("Search");
-        search.setPrefSize(200, 25);
-        search.setOnAction((ae)->HomePageController.loadSearchPage());
-        search.getStyleClass().add("topButtons");
-        topPane.getChildren().add(search);
 
+        TextField searchMovie = new TextField();
+        searchMovie.setPrefSize(200, 25);
+        //searchMovie.getStyleClass().add("topButtons");
+        topPane.getChildren().add(searchMovie);
+
+        Button search = new Button("Search");
+        search.setOnAction(EventHandler -> HomePageController.loadUserWatchList(searchMovie.getText()));
+        topPane.getChildren().add(search);
 
         Button watchList = new Button("Your Watch List");
         watchList.setPrefSize(150, 25);watchList.getStyleClass().add("topButtons");
-        watchList.setOnAction((ae) -> HomePageController.loadUserWatchList());
-
+        watchList.setOnAction((ae) -> HomePageController.loadUserWatchList(""));
 
         topPane.getChildren().add(watchList);
 
@@ -72,11 +74,8 @@ public class HomePage {
         signUp.setOnAction((ae) -> HomePageController.loadSignUp());
         topPane.getChildren().add(signUp);
 
-
         root.setTop(topPane);       // <<<<<<< TOP
             // CENTRE SECTION STARTS.
-
-
 
         root.setLeft(makeTrailerPane(1));
         root.setCenter(makeTrailerPane(2));
@@ -101,23 +100,19 @@ public class HomePage {
 
             pane.getChildren().add(trailerContainer);
 
-
-            Button trailerButton = new Button(thisMovie.getMovieTitle());
             Button movieButton = new Button(thisMovie.getMovieTitle());
             movieButton.setOnAction((ae)->HomePageController.loadMoviePage(thisMovie));
 
-
-            trailerButton.setPrefSize(100, 50);
-            pane.getChildren().add(trailerButton);
-            trailerButton.setAlignment(Pos.CENTER);
-
-            movieButton.setPrefSize(75,50);
+            movieButton.setPrefSize(150,50);
             pane.getChildren().add(movieButton);
             movieButton.setAlignment(Pos.CENTER);
 
-            Label someText1 = new Label("Plot: "+ thisMovie.getMoviePlot());
-            someText1.setWrapText(true);
+            Label someText1 = new Label("Plot:");
             pane.getChildren().add(someText1);
+
+            Label someText3 = new Label(thisMovie.getMoviePlot());
+            someText3.setWrapText(true);
+            pane.getChildren().add(someText3);
 
 
 
@@ -127,13 +122,11 @@ public class HomePage {
                 directorNames += " - " + directors.get(i).getDirectorName();
             }
 
-            Label someText2 = new Label("Director:"+ directorNames );
-            pane.getChildren().add(someText2);
+            Label director = new Label("Director:" );
+            pane.getChildren().add(director);
 
-           Label someText3 = new Label("Hello3");
-           pane.getChildren().add(someText3);
-
-
+            Label theDirectors = new Label(directorNames);
+            pane.getChildren().add(theDirectors);
 
             return pane;
 

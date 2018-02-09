@@ -3,15 +3,15 @@ import Controller.HomePageController;
 import Model.Movie;
 import Model.UserWatchListService;
 import javafx.geometry.Insets;
+import javafx.geometry.Orientation;
 import javafx.geometry.Pos;
+import javafx.geometry.VerticalDirection;
 import javafx.scene.Scene;
-import javafx.scene.control.Button;
-import javafx.scene.control.Label;
-import javafx.scene.control.TextField;
+import javafx.scene.control.*;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.HBox;
-import javafx.scene.layout.Pane;
+import javafx.scene.layout.TilePane;
 import javafx.scene.layout.VBox;
 import javafx.scene.image.Image;
 
@@ -21,12 +21,19 @@ import java.util.ArrayList;
 @SuppressWarnings("Duplicates")
 public class UserWatchList {
 
-    public static void makeUserWatchList() {
+    public static void makeUserWatchList(String searchTerm) {
         BorderPane root = new BorderPane();
 
+
+
         Scene scene = new Scene(root, 1024, 768);
+        root.setPadding(new Insets(10));
+
+
 
         Main.stage.setScene(scene);
+
+        Main.stage.setResizable(true);
 
 
         scene.getStylesheets().add("CSS.css");
@@ -44,9 +51,8 @@ public class UserWatchList {
         logo.setOnAction((ae)->HomePageController.loadHomePage());
         topPane.getChildren().add(logo);
 
-        Button search = new Button("Search");
+        TextField search = new TextField("Search");
         search.setPrefSize(200, 25);
-        search.setOnAction((ae) -> HomePageController.loadSearchPage());
         search.getStyleClass().add("topButtons");
         topPane.getChildren().add(search);
 
@@ -54,7 +60,7 @@ public class UserWatchList {
         Button watchList = new Button("Your Watch List");
         watchList.setPrefSize(150, 25);
         watchList.getStyleClass().add("topButtons");
-        watchList.setOnAction((ae) -> HomePageController.loadUserWatchList());
+        watchList.setOnAction((ae) -> HomePageController.loadUserWatchList(""));
 
         topPane.getChildren().add(watchList);
 
@@ -73,7 +79,10 @@ public class UserWatchList {
 
         // UserInfo userName = UserInfoService.selectAll();
 
-        Label userLogged = new Label("hi");
+        String userName = new String();
+
+        userName = Main.userNameLogged;
+        Label userLogged = new Label(userName);
         userLogged.setPrefSize(90, 25);
         userLogged.getStyleClass().add("topButtons");
         topPane.getChildren().add(userLogged);
@@ -83,15 +92,46 @@ public class UserWatchList {
 
 
         ArrayList<Movie> userMovies = new ArrayList<>();
-        UserWatchListService.selectMoviesByUserID(userMovies, Main.database);
+        if(searchTerm != ""){
+            UserWatchListService.selectMovieBySearchTerm(searchTerm ,userMovies, Main.database);
+        }
+        else {
+            UserWatchListService.selectMoviesByUserID(userMovies, Main.database);
+        }
 
         VBox leftPane = new VBox();
+        ScrollPane scrollPane = new ScrollPane();
+        scrollPane.setFitToWidth(true);
+        leftPane.getChildren().add(scrollPane);
+
+        scrollPane.setContent(leftPane);
+/*
+        TilePane tilePane = new TilePane();
+        tilePane.prefWidthProperty().bind(root.widthProperty());
+        tilePane.prefHeightProperty().bind(root.heightProperty());
+        tilePane.setHgap(10);
+        tilePane.setVgap(10);
+        tilePane.setPadding(new Insets(20));
+
+
+
+        for (int i = 1; i <= 256; i++) {
+            Button exampleButton = new Button(Integer.toString(i));
+            exampleButton.setPrefSize(100, 100);
+            tilePane.getChildren().add(exampleButton);
+        }
+        */
         leftPane.setPrefWidth(700);
 
-        int panelHeight = 300;
+
+        //root.getChildren().add(scrollPane);
+
         int panelTop = 40;
+        int height;
 
         for (int i = 0; i < userMovies.size(); i++) {
+
+
 
             System.out.println("Displaying movie " + userMovies.get(i).getMovieTitle());
 
@@ -110,6 +150,7 @@ public class UserWatchList {
             imageView.setFitHeight(280);
             imageView.setFitWidth(200);
             imagePane.getChildren().add(imageView);
+
 
             VBox info = new VBox(2);
             info.setPrefHeight(500);
@@ -133,13 +174,13 @@ public class UserWatchList {
             moviePlot.setPrefHeight(50);
             info.getChildren().add(moviePlot);
 
-
-
-
-
             leftPane.getChildren().add(imagePane);
         }
-            root.setLeft(leftPane);
+        root.setLeft(scrollPane);
+
+        //
+
+
     }
 
 }

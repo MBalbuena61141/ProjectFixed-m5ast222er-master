@@ -15,13 +15,14 @@ public class Main extends Application {
     public static DatabaseConnection database;
     public static Stage stage;
     public static int userLogged;
+    public static String userNameLogged;
 
     @Override
     public void start(Stage startStage) {
 
         stage = startStage;
         database = new DatabaseConnection("DatabaseProject.db");
-        userLogged = 1;
+        //userLogged = 1;
         HomePage.makeHomePage();
 
     }

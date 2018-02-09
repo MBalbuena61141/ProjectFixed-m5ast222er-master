@@ -1,3 +1,4 @@
+
 package Controller;
 
 import Model.UserInfo;
@@ -17,7 +18,7 @@ public class SignUpController {
         Alert alert = new Alert(Alert.AlertType.INFORMATION);
         alert.setTitle("Information Dialog");
         alert.setHeaderText(null);
-        alert.setContentText("New user successfully created :)");
+        alert.setContentText("New user successfully created. Please now LogIn");
 
         alert.showAndWait();
 

@@ -1,10 +1,10 @@
 package Model;
 
-public class Cast {
+public class MovieActors {
     private int actorID;
     private int movieID;
 
-    public Cast(int actorID, int movieID) {
+    public MovieActors (int actorID, int movieID) {
         this.actorID = actorID;
         this.movieID = movieID;
     }

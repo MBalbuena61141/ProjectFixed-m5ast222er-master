@@ -20,17 +20,13 @@ public class HomePageController {
         View.MoviePage.makeMoviePage((movie));
     }
 
-    public static void loadSearchPage (){
-        View.SearchPage.makeSearchPage();
-    }
-
     public  static void loadHomePage () {
         View.HomePage.makeHomePage();
     }
 
-    public  static  void loadUserWatchList() {
-        if(Main.userLogged != 0) {
-            View.UserWatchList.makeUserWatchList();
+    public  static  void loadUserWatchList(String searchTerm) {
+        if(Main.userLogged != 0 || searchTerm !="") {
+            View.UserWatchList.makeUserWatchList(searchTerm);
             System.out.println(Main.userLogged);
         }
             else {

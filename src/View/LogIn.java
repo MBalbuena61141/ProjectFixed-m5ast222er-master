@@ -47,11 +47,8 @@ public class LogIn {
         GridPane.setConstraints(userPass, 0, 1);
         grid.getChildren().add(userPass);
 
-
-
-
         // Button to sign in and close
-        Button SignUpButton = new Button("Loging in");
+        Button SignUpButton = new Button("SignUp");
         SignUpButton.setTranslateX(100);
         SignUpButton.setTranslateY(100);
         SignUpButton.setOnAction(EventHandler -> LogInController.attemptLogin(userName.getText(), userPass.getText(), logInStage));

@@ -4,24 +4,25 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
-import java.util.List;
 
-public class ActorService {
+public class GenreService {
 
-    public static ArrayList<Actor> selectActor (int id, DatabaseConnection database) {
+    public static ArrayList<Genre> selectGenre(int id, DatabaseConnection database) {
 
-        ArrayList<Actor> selectActor = new ArrayList<>();
+        ArrayList<Genre> movieGenre = new ArrayList<>();
 
-        PreparedStatement statement = database.newStatement("SELECT Actor.actorID, actorName FROM Actor INNER JOIN Cast ON actor.actorID = Cast.actorID WHERE Movie.movieID = ?");
+        PreparedStatement statement = database.newStatement("SELECT Genre.genreID, Genre.genreName FROM Genre INNER JOIN MovieGenre ON MovieGenre.genreID= Genre.genreID WHERE movieID =?");
 
         try {
             if (statement != null) {
 
+
+                statement.setInt(1,id);
                 ResultSet results = database.executeQuery(statement);
 
                 if (results != null) {
                     while (results.next()) {
-                        selectActor.add(new Actor(results.getInt("actorID"), results.getString("actorName")));
+                        movieGenre.add(new Genre(results.getInt("genreID"), results.getString("genreName")));
                     }
                 }
             }
@@ -29,7 +30,7 @@ public class ActorService {
             System.out.println("Database select all error: " + resultsException.getMessage());
         }
 
-        return selectActor;
+        return movieGenre;
     }
 
 

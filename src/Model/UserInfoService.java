@@ -1,5 +1,6 @@
 package Model;
 
+import java.sql.Array;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -33,8 +34,10 @@ public class UserInfoService {
             System.out.println("Database saving error: " + resultsException.getMessage());
         }
     }
-
-
-
-
 }
+
+    /*public static newUser (Array<UserInfo>, DatabaseConnection database) {
+
+         Array userInfo = new Array{}
+
+         PreparedStatement statement = database.newStatement("SELECT * UserID FROM UserInfo")*/

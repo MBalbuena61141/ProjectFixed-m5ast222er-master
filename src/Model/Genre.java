@@ -2,11 +2,11 @@ package Model;
 
 public class Genre {
     private int genreID;
-    private String genreType;
+    private String genreTitle;
 
     public Genre(int genreID, String genreType) {
         this.genreID = genreID;
-        this.genreType = genreType;
+        this.genreTitle = genreType;
     }
 
     public int getGenreID() {
@@ -17,17 +17,17 @@ public class Genre {
         this.genreID = genreID;
     }
 
-    public String getGenreType() {
-        return genreType;
+    public String getGenreTitle() {
+        return genreTitle;
     }
 
-    public void setGenreType(String genreType) {
-        this.genreType = genreType;
+    public void setGenreTitle(String genreTitle) {
+        this.genreTitle = genreTitle;
 
 }
 
     @Override
     public String toString() {
-        return genreType;
+        return genreTitle;
 }
 }
