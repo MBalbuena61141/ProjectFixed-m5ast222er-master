@@ -1,6 +1,7 @@
 package Model;
 
 import View.Main;
+import javafx.scene.control.Alert;
 
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -53,11 +54,20 @@ public class UserWatchListService {
                         userMovies.add(new Movie(results.getInt("movieID"), results.getString("movieTitle"), results.getString("movieUrl"), results.getString("movieImage"), results.getString("moviePlot")));
                     }
                 }
+            } else {
+
+                Alert alert = new Alert(Alert.AlertType.ERROR);
+                alert.setTitle("Movie not found");
+                alert.setHeaderText("Movie not found");
+                alert.setContentText("Sorry, we could not find the movie");
+                alert.showAndWait();
+                return;
             }
         } catch (SQLException e) {
             e.printStackTrace();
         }
     }
+
 
     public static void saveMovie(Movie userMovies, DatabaseConnection database) {
 

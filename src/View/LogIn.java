@@ -38,7 +38,7 @@ public class LogIn {
 
 //Defining the Name text field
         final TextField userName = new TextField();
-        userName.setPromptText("Enter your surename");
+        userName.setPromptText("Enter your userName");
         GridPane.setConstraints(userName, 0, 0);
         grid.getChildren().add(userName);
 
@@ -48,7 +48,7 @@ public class LogIn {
         grid.getChildren().add(userPass);
 
         // Button to sign in and close
-        Button SignUpButton = new Button("SignUp");
+        Button SignUpButton = new Button("Log In");
         SignUpButton.setTranslateX(100);
         SignUpButton.setTranslateY(100);
         SignUpButton.setOnAction(EventHandler -> LogInController.attemptLogin(userName.getText(), userPass.getText(), logInStage));

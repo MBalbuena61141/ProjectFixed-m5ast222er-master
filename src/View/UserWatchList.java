@@ -51,9 +51,13 @@ public class UserWatchList {
         logo.setOnAction((ae)->HomePageController.loadHomePage());
         topPane.getChildren().add(logo);
 
-        TextField search = new TextField("Search");
-        search.setPrefSize(200, 25);
-        search.getStyleClass().add("topButtons");
+        TextField searchMovie = new TextField();
+        searchMovie.setPrefSize(200, 25);
+        //searchMovie.getStyleClass().add("topButtons");
+        topPane.getChildren().add(searchMovie);
+
+        Button search = new Button("Search");
+        search.setOnAction(EventHandler -> HomePageController.loadUserWatchList(searchMovie.getText()));
         topPane.getChildren().add(search);
 
 

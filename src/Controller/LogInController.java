@@ -39,6 +39,7 @@ public class LogInController {
                         stage.close();
                         Main.userLogged = thisUser.getUserID();
                         Main.userNameLogged = thisUser.getUserName();
+                        System.out.println("The userLogged in is " + Main.userLogged);
 
                         Alert alert = new Alert(Alert.AlertType.INFORMATION);
                         alert.setTitle("Information Dialog");
